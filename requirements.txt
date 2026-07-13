@@ -4,3 +4,4 @@ streamlit
 joblib
 numpy
 google-generativeai
+yfinance
