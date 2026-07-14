@@ -75,7 +75,7 @@ def get_live_weather_risk(city):
             risk = min(1.0, risk + 0.2)
             condition += " + High Winds"
             
-        desc = f"{condition} ({temp}°C, Wind: {wind}km/h)"
+        desc = f"{condition} (°C, Wind: {wind}km/h)"
         return round(risk, 2), desc
         
     except Exception as e:
