@@ -6,6 +6,20 @@ import yfinance as yf
 import feedparser
 import requests
 
+# --- ADD THIS TO THE TOP OF app.py ---
+st.set_page_config(page_title="Supply Chain Risk Engine", layout="wide")
+st.markdown("""
+<style>
+    .reportview-container { background: #f0f2f6; }
+    .main { padding: 2rem; }
+</style>
+""", unsafe_allow_html=True)
+
+# Add a header with your name/project title
+st.title("🚀 Autonomous Supply Chain Control Tower")
+st.markdown("### Master's Project: Agentic Risk Mitigation & Live Data Analytics")
+st.markdown("---")
+
 # ----------------------------------------------------
 # FUNCTION 1: Fetch live crude oil data
 # ----------------------------------------------------
