@@ -5,3 +5,5 @@ joblib
 numpy
 google-generativeai
 yfinance
+feedparser
+requests
