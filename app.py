@@ -5,7 +5,6 @@ import google.generativeai as genai
 import yfinance as yf
 import feedparser
 import requests
-import datetime
 
 # ----------------------------------------------------
 # FUNCTION 1: Fetch live crude oil data
@@ -102,14 +101,12 @@ st.sidebar.header("📦 Inventory & Product Profile")
 product_name = st.sidebar.text_input("Product Stock Name", value="Fresh Milk & Juices Batch")
 product_category = st.sidebar.selectbox("Category / Shelf Life Risk", ["Perishable (Short Shelf Life)", "Standard Goods", "Bulk Commodities"])
 
-# Perishability adjustment logic
 perishability_multiplier = 1.2 if product_category == "Perishable (Short Shelf Life)" else 1.0
 
 st.sidebar.divider()
 st.sidebar.header("🎉 Demand & Event Impact (FIFA, F1, Olympics)")
 active_event = st.sidebar.selectbox("Upcoming City Event", ["None / Normal Operations", "FIFA World Cup Match", "Formula 1 Grand Prix", "Global Music Festival / Concert", "National Holiday / Expo"])
 
-# Event surge modifier
 event_surge_multiplier = 1.0
 if active_event == "FIFA World Cup Match":
     event_surge_multiplier = 1.35
@@ -163,7 +160,6 @@ if st.button("Analyze & Execute Decisions", type="primary"):
     base_prediction = model.predict(input_data)[0]
     base_probability = model.predict_proba(input_data)[0][1] 
     
-    # Scale final probability based on perishable risk and major city events
     adjusted_probability = min(1.0, base_probability * perishability_multiplier * event_surge_multiplier)
     adjusted_prediction = 1 if adjusted_probability >= 0.5 else 0
     
@@ -226,4 +222,3 @@ if st.button("Analyze & Execute Decisions", type="primary"):
                 
     else:
         st.success("💚 Inventory risk is within safe operating parameters for the upcoming event window. Monitoring active route conditions...")
-```eof
