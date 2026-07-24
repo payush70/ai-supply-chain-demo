@@ -6,9 +6,7 @@ import yfinance as yf
 import feedparser
 import requests
 
-# ----------------------------------------------------
-# FUNCTION 1: Fetch live crude oil data
-# ----------------------------------------------------
+
 def get_live_oil_price():
     try:
         oil_ticker = yf.Ticker("CL=F")
@@ -18,9 +16,7 @@ def get_live_oil_price():
     except Exception as e:
         return 75.00 
 
-# ----------------------------------------------------
-# FUNCTION 2: Fetch Live Supply Chain News
-# ----------------------------------------------------
+
 def get_live_logistics_news():
     try:
         url = "https://news.google.com/rss/search?q=global+supply+chain+shipping+disruption+geopolitics&hl=en-US&gl=US&ceid=US:en"
@@ -32,9 +28,6 @@ def get_live_logistics_news():
     except Exception as e:
         return ["Unable to fetch live news at this time."]
 
-# ----------------------------------------------------
-# FUNCTION 3: Fetch Live Weather & Convert to Risk
-# ----------------------------------------------------
 def get_live_weather_risk(city):
     try:
         geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1"
@@ -78,9 +71,7 @@ def get_live_weather_risk(city):
     except Exception as e:
         return 0.2, "Clear (API Offline)"
 
-# ----------------------------------------------------
-# MAIN APP SETUP
-# ----------------------------------------------------
+
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 llm_model = genai.GenerativeModel("gemini-3.5-flash")
 
